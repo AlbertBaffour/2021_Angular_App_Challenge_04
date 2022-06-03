@@ -1,0 +1,16 @@
+<div class="d-flex flex-column container-fluid p-0 container-md">
+  <div class="bg-success p-2 p-sm-3">
+    <form (ngSubmit)="onSearchSubmit()" class="sb-form d-flex">
+      <input class="sb-input" type="text" id="searchText" name="searchText" placeholder="Waar ben je naar op zoek?" [(ngModel)]="searchText">
+    </form>
+  </div>
+  <div routerLink="/shop" class="border-bottom rounded category-nav p-2 noSelect d-flex justify-content-between align-items-center">
+    Alle artikelen
+    <i class="fas fa-chevron-right"></i>
+  </div>
+  <div routerLink="/shop/category/{{category.id}}" *ngFor="let category of categories" class="border-bottom rounded category-nav p-2 noSelect d-flex justify-content-between align-items-center">
+    {{category.name}}
+    <i class="fas fa-chevron-right"></i>
+  </div>
+  <app-loading *ngIf="loading$ | async"></app-loading>
+</div>

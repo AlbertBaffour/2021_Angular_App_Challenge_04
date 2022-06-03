@@ -1,0 +1,3 @@
+<ng-container *ngIf="article">
+  <app-article [article]="article" [isPartOfMyFavorites]=true (deleteFavorite)="deleteFavorite()"></app-article>
+</ng-container>

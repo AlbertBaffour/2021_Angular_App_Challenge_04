@@ -1,0 +1,53 @@
+<div class="container-fluid">
+  <div class="row my-4">
+    <div class="col-lg-10 col-12 offset-lg-1">
+      <div class="d-flex">
+        <button class="btn btn-white mr-2" routerLink="/shop">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <h2 class="mb-0">Mijn bestellingen</h2>
+      </div>
+      <hr class="mb-0 mt-2">
+      <app-loading *ngIf="loading$ | async"></app-loading>
+      <div *ngIf="orders.length == 0 && !(loading$ | async)" class="text-center mt-4">
+        <div class="text-muted alert alert-primary">Geen bestellingen gevonden</div>
+      </div>
+    </div>
+    <div class="col-lg-10 col-12 offset-lg-1 mt-2 table-responsive" *ngIf="orders.length != 0 && !(loading$ | async)">
+      <table datatable [dtOptions]="dtOptions" class="table mt-3 w-100 text-justify text-center" *ngIf="!(loading$ | async)">
+        <thead class="bg-primary text-white">
+        <tr>
+          <th scope="col">Status</th>
+          <th scope="col">Besteldatum</th>
+          <th scope="col">Leveringsdatum</th>
+          <th scope="col">Totaalbedrag</th>
+          <th scope="col">Acties</th>
+        </tr>
+        </thead>
+        <tbody *ngIf="!(loading$ | async)">
+        <tr *ngFor="let order of orders">
+          <td>{{ statusses[order.status] }}</td>
+          <td *ngIf="order.status === 0">/</td>
+          <td *ngIf="order.status !== 0">{{ order.orderDate | date: 'd/M/y' }}</td>
+          <td *ngIf="order.status === 0">/</td>
+          <td *ngIf="order.status !== 0">{{ order.deliveryDate | date: 'd/M/y' }}</td>
+          <td>€ {{ order.totalPrice }}</td>
+          <td>
+            <a type="button" (click)="viewBasket(order.id)">
+              <i class="fas fa-eye text-primary"></i>
+            </a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <div *ngIf="orders.length == 0 && !(loading$ | async)">
+        U heeft nog geen bestellingen geplaatst.
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+

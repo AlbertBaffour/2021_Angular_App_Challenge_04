@@ -1,0 +1,42 @@
+<div class="article-link">
+  <div *ngIf="article.quantityInStock == 0" class="overlay"></div>
+
+  <div [class.out-of-stock]="article.quantityInStock == 0" class="article-container p-2 p-md-3 d-flex flex-column justify-content-between">
+    <div>
+      <div class="d-flex align-items-center justify-content-between">
+        <div>
+          <p class="article mb-0">
+            {{article.name}}
+          </p>
+         <p class="brand mb-0">
+          {{(article.brand == ''||article.brand == null)?"Merkloos":article.brand}}
+        </p>
+        </div>
+        <button *ngIf="!isFavorite && !isSuggestion" (click)="favorite()" [class.out-of-stock-fav]="article.quantityInStock == 0" class="btn btn-light favorite"><i class="far fa-heart"></i>
+        </button>
+        <button *ngIf="isFavorite && !isSuggestion" (click)="favorite()" [class.out-of-stock-fav]="article.quantityInStock == 0" class="btn btn-light favorite favorite-active"><i
+          class="fas fa-heart"></i>
+        </button>
+
+      </div>
+
+      <div class="w-100 text-center">
+        <img *ngIf="!isSuggestion" routerLink="/shop/{{article.id}}" src="{{baseImgUrl+article.img}}" class="img-fluid px-5 py-2" alt="">
+        <img *ngIf="isSuggestion" src="{{baseImgUrl+article.img}}" class="img-fluid px-5 py-2" alt="">
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center">
+      <p *ngIf="article.quantityInStock == 0" class=" mt-2 mb-0 price">Niet beschikbaar</p>
+      <p *ngIf="article.quantityInStock != 0" class="out mb-0 price">€ {{article.price}}</p>
+      <div *ngIf="article.quantityInStock != 0 && !isSuggestion" class="d-flex">
+        <button class="btn btn-primary add d-flex align-items-center ml-2 py-0" (click)="addToBasket()">
+          <span class="material-icons">
+            add_shopping_cart
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,60 @@
+@import "/src/scss/variables";
+
+.article-link{
+  height: 100% ;
+}
+.article-link:hover{
+  .article-container{
+    border: 1px solid $secondary;
+  }
+}
+
+img{
+  cursor: pointer;
+}
+
+.article-container{
+  border: 1px solid $grey;
+  width: 100%;
+  height: 100%;
+  &, * {
+    .favorite{
+      background-color: white;
+      border: none;
+      z-index: 3;
+    }
+    .favorite-active{
+      i{
+        color: $primary;
+      }
+    }
+    .out-of-stock-fav{
+      background: none !important;
+    }
+    img{
+      max-height: 200px;
+      margin: auto;
+    }
+    font-size: 0.9rem;
+    .add, #sizeSelect{
+      z-index: 5;
+      height: 35px;
+      border-radius: 50px;
+      padding-left: 13px;
+      padding-right: 13px;
+    }
+    #sizeSelect{
+      padding-left: 8px;
+      padding-right: 8px;
+    }
+  }
+}
+
+.overlay{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.2);
+  z-index: 2;
+}
+

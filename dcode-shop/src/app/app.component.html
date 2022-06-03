@@ -1,0 +1,8 @@
+<app-navigation (toggleNav)="toggleNav($event.toggled)"></app-navigation>
+<div [ngClass]="overlayClass"></div>
+<section class="flex-grow-1">
+  <router-outlet></router-outlet>
+</section>
+<app-footer class="mt-auto"></app-footer>
+
+

@@ -1,0 +1,34 @@
+<div class="basketitem">
+  <div class="row justify-content-between align-items-center">
+    <div class="col-9 col-md-6 pl-0 pl-md-auto order-1">
+      <div class="pl-0 d-flex align-items-center">
+        <img
+          class="img-fluid ml-0 ml-md-3"
+          src="{{baseImgUrl+article.img}}"
+          width="62"
+          height="62"
+        />
+        <div class="media-body my-auto ml-3">
+          <div class="row">
+            <div class="col-auto">
+              <p class="mb-0"><b>{{ article.name }}</b></p>
+              <small class="text-muted">{{ article.brand }}</small>
+              <small *ngIf="article.brand == '' || article.brand == null" class="text-muted">Merkloos</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pl-0 col-3 col-md-2 col-lg-1 d-flex justify-content-end justify-content-md-center align-items-center align-items-md-end order-2 order-md-3">
+      <div class="font-weight-bold m-0">€&nbsp;{{ basketItem.subtotal }}</div>
+    </div>
+    <div class="pl-0 col-8 col-md-2 order-3 order-md-2">
+      <label class="m-0" for="quantity">Aantal:</label>
+      <input height="10px" class="form-control" type="number" min="1" max="1000" oninput="validity.valid||(value='');" name="quantity" id="quantity" [disabled]="mode === 'history'" [(ngModel)]="basketItem.quantity" (ngModelChange)="changeQuantity($event)">
+    </div>
+    <div class="d-flex justify-content-end align-items-end col-4 col-md-2 col-lg-1 order-4" *ngIf="mode === 'current'">
+      <button class="btn btn-light" (click)="deleteBasketItem()"><i class="fas fa-trash"></i></button>
+    </div>
+  </div>
+  <hr class="my-2" />
+</div>

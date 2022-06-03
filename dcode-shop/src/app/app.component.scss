@@ -1,0 +1,26 @@
+.error-img{
+  max-height: 80%;
+}
+
+.nav-overlay{
+  position: fixed;
+  width: 100%;
+  height: 0;
+  background-color: rgba(0,0,0,0.3);
+  z-index: 10;
+  transition: all .3s;
+}
+
+app-navigation{
+  z-index: 20;
+}
+
+//app-navigation .nav-small .nav-toggler:hover .nav-overlay{
+//  //z-index: 500;
+//  //&:hover{
+//  //  .nav-overlay{
+//  //    height: 100% !important;
+//  //  }
+//  //}
+//  height: 100% !important;
+//}

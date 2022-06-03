@@ -1,0 +1,61 @@
+<div class="background">
+  <div class="row justify-content-center justify-content-lg-start h-100">
+    <div class="d-none d-lg-flex col-md-7 col-lg-6 home-image-container align-items-center justify-content-center">
+    </div>
+    <div class="col-12 col-md-8 col-lg-6 d-flex justify-content-center align-items-center px-3 pr-md-4">
+      <div class="d-flex flex-column w-100">
+
+        <div class="container-fluid px-3 py-4">
+           <div class="d-flex align-items-center justify-content-between">
+             <h3 *ngIf="isLogin">Inloggen</h3>
+             <h3 *ngIf="isRegister">Registreren</h3>
+             <img src="/assets/logo-DSport.svg" width="100" alt="">
+           </div>
+            <div class="alert alert-warning mt-2" role="alert" *ngIf="errorMessage">
+              {{errorMessage}}
+            </div>
+            <form (ngSubmit)="onSubmit()" #authForm="ngForm" class="d-block d-flex flex-wrap">
+              <div *ngIf="isRegister" class="form-group col-lg-6 pl-lg-0 pr-lg-2 px-0">
+                <label for="firstName">Voornaam *</label>
+                <input type="firstName" name="firstName" id="firstName" class="form-control" [(ngModel)]="customer.firstName" required firstName>
+              </div>
+              <div *ngIf="isRegister" class="form-group col-lg-6 pr-lg-0 pl-lg-2 px-0">
+                <label for="lastName">Achternaam *</label>
+                <input type="lastName" name="lastName" id="lastName" class="form-control" [(ngModel)]="customer.lastName" required lastName>
+              </div>
+              <div *ngIf="isRegister" class="form-group  col-lg-6 pl-lg-0 pr-lg-2 px-0">
+                <label for="streetAndNumber">Straat en nummer</label>
+                <input type="streetAndNumber" name="streetAndNumber" id="streetAndNumber" class="form-control" placeholder="" [(ngModel)]="customer.streetAndNumber" streetAndNumber>
+              </div>
+              <div *ngIf="isRegister" class="form-group col-lg-6 pr-lg-0 pl-lg-2 px-0">
+                <label for="postcode">Postcode</label>
+                <input type="postcode" name="postcode" id="postcode" class="form-control" [(ngModel)]="customer.postcode" postcode>
+              </div>
+              <div *ngIf="isRegister" class="form-group col-lg-6 pl-lg-0 pr-lg-2 px-0">
+                <label for="city">Stad</label>
+                <input type="city" name="city" id="city" class="form-control" [(ngModel)]="customer.city" city>
+              </div>
+              <div *ngIf="isRegister" class="form-group col-lg-6 pr-lg-0 pl-lg-2 px-0">
+                <label for="phone">Gsm</label>
+                <input type="phone" name="phone" id="phone" class="form-control" [(ngModel)]="customer.phone"  phone>
+              </div>
+              <div class="form-group col-12 px-0">
+                <label for="email">Email *</label>
+                <input type="email" name="email" id="email" class="form-control" [(ngModel)]="user.email" required email>
+              </div>
+              <div class="form-group col-12 px-0">
+                <label for="password">Wachtwoord *</label>
+                <input type="password" name="password" id="password" class="form-control" minlength="4" [(ngModel)]="user.password" required="">
+              </div>
+              <input *ngIf="isLogin" name="login" id="login" class="btn btn-block btn-primary mb-2" type="submit" value="Inloggen" [disabled]="!authForm.form.valid || isSubmitted">
+              <input *ngIf="isRegister" name="login" id="login" class="btn btn-block btn-primary mb-2" type="submit" value="Registreren" [disabled]="!authForm.form.valid || isSubmitted">
+            </form>
+
+            <p *ngIf="!isRegister" class="login-wrapper-footer-text">Nog geen account? <a routerLink="/register">Registreer nu</a></p>
+            <p *ngIf="isRegister" class="login-wrapper-footer-text">Reeds een account? <a routerLink="/login">Inloggen</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,11 @@
+@import "/src/scss/variables";
+
+h3 {
+  border-bottom: 1px solid $grey;
+}
+
+.favorites {
+  app-article {
+    height: 100%;
+  }
+}

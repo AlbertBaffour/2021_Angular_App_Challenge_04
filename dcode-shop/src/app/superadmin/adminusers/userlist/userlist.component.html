@@ -1,0 +1,53 @@
+<div class="container-fluid">
+  <div class="row my-4">
+    <div class="col-lg-10 col-12 offset-lg-1">
+      <div class="d-flex justify-content-between flex-column flex-md-row text-center">
+        <h2 class="mb-0">Gebruikers beheren</h2>
+        <div class="mx-auto mx-md-0">
+          <button type="button" (click)="addUser()" class="btn btn-green addBtn d-flex align-items-center" >Nieuwe gebruiker <span class="ml-2 material-icons-outlined">
+person_add
+</span></button>
+        </div>
+      </div>
+      <hr class="mb-0 mt-2">
+      <app-loading *ngIf="loading$ | async"></app-loading>
+      <div *ngIf="users.length == 0 && !(loading$ | async)" class="text-center mt-4">
+        <div class="text-muted alert alert-primary">Geen gebruikers gevonden</div>
+      </div>
+    </div>
+    <div class="col-lg-10 col-12 offset-lg-1 mt-2 table-responsive">
+    <table datatable [dtOptions]="dtOptions" class="table crud-table bg-success shadow-sm " *ngIf="users && users.length > 0">
+        <thead class="bg-secondary">
+        <tr>
+          <th scope="col">Voornaam</th>
+          <th scope="col">Achternaam</th>
+          <th scope="col">Email</th>
+          <th scope="col">Adres</th>
+          <th class="text-center" scope="col">Actief</th>
+          <th class="text-center" scope="col">Admin</th>
+          <th class="text-center" scope="col">Superadmin</th>
+          <th class="text-center" scope="col">Actie</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr *ngFor="let usr of users" >
+          <td>{{usr.firstName}}</td>
+          <td>{{usr.lastName}}</td>
+          <td>{{usr.email}}</td>
+          <td>{{usr.customer.streetAndNumber}}<br><span>{{usr.customer.postcode}}</span>&nbsp;<span>{{usr.customer.city}}</span></td>
+          <td class="text-center"><i *ngIf="usr.isActive == true" class="fas fa-check"></i><i *ngIf="usr.isActive == false" class="fas fa-times"></i></td>
+          <td class="text-center"><i *ngIf="usr.isAdmin == true" class="fas fa-check"></i><i *ngIf="usr.isAdmin == false" class="fas fa-times"></i></td>
+          <td class="text-center"><i *ngIf="usr.isSuperAdmin == true" class="fas fa-check"></i><i *ngIf="usr.isSuperAdmin == false" class="fas fa-times"></i></td>
+          <td class="text-center">
+            <div class="btn-group">
+              <button type="button" class="btn btn-green" (click)="editUser(usr.id)"><i class="far fa-edit"></i></button>
+              <button type="button" class="btn btn-red" *ngIf="usr.isSuperAdmin == false" (click)="deleteUser(usr.id, usr.customerId)"><i class="far fa-trash-alt"></i></button>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

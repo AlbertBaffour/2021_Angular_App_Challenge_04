@@ -1,0 +1,14 @@
+//override Bootstrap variables and custom mixins
+@import "scss/variables";
+
+//reboot
+@import "scss/reboot";
+
+@import "node_modules/bootstrap/scss/bootstrap";
+
+//custom code/partials
+@import "scss/custom";
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+@import '~material-icons/iconfont/material-icons.css';

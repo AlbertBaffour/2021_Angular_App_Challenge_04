@@ -1,0 +1,51 @@
+<div class="container mt-5">
+    <h2>Profiel bewerken</h2>
+    <hr class="mt-0 ">
+    <form (ngSubmit)="onSubmit()" #tdlistForm="ngForm">
+    <div class="form-group">
+      <label for="fname">Voornaam:</label>
+      <input type="text" class="form-control" id="fname" name="fname" placeholder="John"
+             [(ngModel)]="user.firstName" #fname="ngModel" required>
+      <div [hidden]="fname.valid || fname.pristine" class="alert alert-danger">Geef een voornaam in</div>
+    </div>
+
+    <div class="form-group">
+      <label for="lname">Achternaam:</label>
+      <input type="text" class="form-control" id="lname" name="lname" placeholder="doe"
+             [(ngModel)]="user.lastName" #lname="ngModel" required>
+      <div [hidden]="lname.valid || lname.pristine" class="alert alert-danger">Geef een achternaam in</div>
+
+    </div>
+    <div class="form-group">
+      <label for="streetnr">Straat en huisnummer:</label>
+      <input type="text" class="form-control" id="streetnr" name="streetnr" placeholder="Straatweg 40"
+             [(ngModel)]="customer.streetAndNumber" #streetnr="ngModel" required>
+      <div [hidden]="streetnr.valid || streetnr.pristine" class="alert alert-danger">Geef een geldig adres</div>
+    </div>
+    <div class="form-group">
+      <label for="pcode">Postcode:</label>
+      <input type="text" class="form-control" id="pcode" name="pcode" placeholder="1234"
+             [(ngModel)]="customer.postcode" #pcode="ngModel" required>
+      <div [hidden]="pcode.valid || pcode.pristine" class="alert alert-danger">Geef een geldige postcode</div>
+    </div>
+    <div class="form-group">
+      <label for="city">Stad:</label>
+      <input type="text" class="form-control" id="city" name="city" placeholder="Brussel"
+             [(ngModel)]="customer.city" #city="ngModel" required>
+      <div [hidden]="city.valid || city.pristine" class="alert alert-danger">Geef een geldige stad</div>
+    </div>
+    <div class="form-group">
+      <label for="telnr">Telefoonnummer:</label>
+      <input type="tel" class="form-control" id="telnr" name="telnr" placeholder="0123 45 67 89"
+             [(ngModel)]="customer.phone" #telnr="ngModel" required>
+      <div [hidden]="telnr.valid || telnr.pristine" class="alert alert-danger">Geef een geldig telefoonnummer</div>
+      <div class="d-flex mt-3">
+        <button type="submit" class="btn btn-primary" *ngIf="isEdit"
+                [disabled]="!tdlistForm.form.valid || isSubmitted">Opslaan <i class="ml-2 fas fa-save"></i>
+        </button>
+        <a routerLink="/user" class="btn btn-outline-secondary ml-2">Annuleren</a>
+      </div>
+    </div>
+  </form>
+</div>
+

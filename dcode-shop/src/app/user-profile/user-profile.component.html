@@ -1,0 +1,28 @@
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center ">
+      <div class="d-flex align-items-center">
+        <button class="btn btn-white mr-2" routerLink="/shop">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <h2 class="mb-0">Mijn Profiel</h2>
+      </div>
+      <a routerLink="/user/form" class="btn btn-primary" (click)="edit()">Profiel bewerken</a>
+    </div>
+
+  <hr class="mt-1"/>
+  <div class="d-flex" *ngIf="!(loading$ | async)">
+    <img src="assets/illustrations/user.svg" alt="" class="mx-5" style="max-width: 200px; width: 100%">
+    <div class="card" style="width: 100%">
+      <div class="card-header font-weight-bold">
+        Details
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><b>Naam:</b> {{currentUsr.firstName}} {{currentUsr.lastName}}</li>
+        <li class="list-group-item"><b>E-mail: </b> {{currentUsr.email}} </li>
+        <li class="list-group-item"><b>Adres: </b> {{currentUsr.streetAndNumber}} <br> {{currentUsr.postcode}} {{currentUsr.city}}  </li>
+        <li class="list-group-item"><b>Telefoonnummer: </b> {{currentUsr.phone}} </li>
+      </ul>
+    </div>
+  </div>
+  <app-loading *ngIf="loading$ | async"></app-loading>
+</div>

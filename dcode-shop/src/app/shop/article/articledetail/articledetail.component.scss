@@ -1,0 +1,33 @@
+@import '/src/scss/variables';
+
+.background {
+  height: 100%;
+  max-height: 100%;
+  overflow-x: hidden;
+  background-color: $success;
+
+  .product-image-container{
+    background-image: url("/assets/test.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right;
+    .product-image{
+      max-width: 400px;
+      width: 80%
+    }
+  }
+}
+
+.product-info{
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .product-image-container {
+    background-image: none !important;
+  }
+  .background{
+    background-color: white !important;
+  }
+}
+

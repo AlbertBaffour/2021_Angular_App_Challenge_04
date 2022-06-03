@@ -1,0 +1,46 @@
+@import "/src/scss/variables";
+
+.shop-header {
+  background-color: rgba(darken($success, 50%), 0.20) !important;
+  background: url("/assets/design.svg");
+  background-repeat: no-repeat;
+  background-position: right top;
+  background-size: contain;
+
+  @media screen and (max-width: 576px){
+    background: none !important;
+    background-color: rgba(darken($success, 50%), 0.20) !important;
+  }
+
+  .category {
+    color: $primary;
+    font-size: 1.8rem;
+  }
+
+  .article-amount {
+    background-color: $primary;
+    color: white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+  }
+
+  .sort-dd {
+    border-radius: 50px;
+    border: none;
+    background-color: darken($success, 15%);
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    height: 35px;
+    font-size: 0.9rem !important;
+
+    &:focus {
+      outline: none !important;
+    }
+  }
+}
+select {
+  font-family: 'FontAwesome', 'Poppins', 'sans-serif';
+}
+

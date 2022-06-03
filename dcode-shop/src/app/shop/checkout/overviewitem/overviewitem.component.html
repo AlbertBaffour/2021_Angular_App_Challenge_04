@@ -1,0 +1,21 @@
+<div class="row justify-content-between">
+    <div class="col-md-7">
+        <div class="media flex-column flex-sm-row"> <img class=" img-fluid" src="{{baseImgUrl+currentArticle.img}}"
+                width="62" height="62">
+            <div class="media-body my-auto">
+                <div class="row ">
+                    <div class="col-auto">
+                        <p class="mb-0"><b></b></p><small class="text-muted">{{currentArticle.name}}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class=" pl-0 flex-sm-col col-auto my-auto">
+        <p> <b>Aantal: </b> <b>{{currentItem.quantity}}</b> </p>
+    </div>
+    <div class=" pl-0 flex-sm-col col-auto my-auto ">
+        <p><b>Prijs: €</b> <b>{{currentItem.subtotal}}</b></p>
+    </div>
+</div>
+<hr class="my-2">

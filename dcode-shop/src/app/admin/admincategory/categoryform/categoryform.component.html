@@ -1,0 +1,24 @@
+<div class="container mt-4">
+  <h1>{{ getTitleText() }}</h1>
+  <form (ngSubmit)="onSubmit">
+    <div class="form-group">
+      <label for="name">Naam:</label>
+      <input type="text" id="name" name="name" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Omschrijving:</label>
+      <textarea name="description" id="description" rows="3" class="form-control"></textarea>
+    </div>
+
+    <div class="form-group">
+      <div class="form-check">
+        <input name="isActive" id="isActive" type="checkbox" class="form-check-input">
+        <label for="isActive" class="form-check-label">Actief</label>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">{{ getSubmitButtonText() }}</button>
+  </form>
+</div>
+

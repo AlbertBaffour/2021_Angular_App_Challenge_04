@@ -1,0 +1,10 @@
+table {
+  display: block;
+  overflow-x: auto;
+}
+
+@media (min-width: 768px) {
+  table {
+    display: table;
+  }
+}

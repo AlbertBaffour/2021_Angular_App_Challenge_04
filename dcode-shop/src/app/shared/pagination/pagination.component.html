@@ -1,0 +1,35 @@
+<nav class="d-flex justify-content-center align-items-center flex-column my-3">
+  <div>
+    {{headers.pageNumber + "/" + headers.totalPages}}
+  </div>
+  <ul class="pagination">
+    <li *ngIf="headers.firstPage != null && headers.pageNumber != 1" class="page-item">
+      <a class="page-link" (click)="paginate(headers.firstPage)">
+                <span class="material-icons-outlined">
+                  first_page
+                </span>
+      </a>
+    </li>
+    <li *ngIf="headers.previousPage != null" class="page-item">
+      <a class="page-link" (click)="paginate(headers.previousPage)">
+                <span class="material-icons-outlined">
+                  chevron_left
+                </span>
+      </a>
+    </li>
+    <li *ngIf="headers.nextPage != null" class="page-item">
+      <a class="page-link" (click)="paginate(headers.nextPage)">
+                <span class="material-icons-outlined">
+                  chevron_right
+                </span>
+      </a>
+    </li>
+    <li *ngIf="headers.lastPage != null && headers.totalPages != headers.pageNumber" class="page-item">
+      <a class="page-link" (click)="paginate(headers.lastPage)">
+                <span class="material-icons-outlined">
+                  last_page
+                </span>
+      </a>
+    </li>
+  </ul>
+</nav>

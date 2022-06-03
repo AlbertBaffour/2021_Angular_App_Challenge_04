@@ -1,0 +1,74 @@
+<div class="container mt-4">
+  <div class="row d-flex align-items-center">
+    <h1 class="col-12 col-md-8 col-lg-9">Categorieën</h1>
+    <div class="add-btn col-12 col-md-4 col-lg-3">
+      <button class="btn btn-green w-100" (click)="add()">
+        <i class="fa fa-plus"></i> nieuwe categorie
+      </button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <table class="table mt-3 w-100 text-justify">
+        <thead class="bg-primary text-white text-center">
+          <tr>
+            <th scope="col">Naam</th>
+            <th scope="col">Omschrijving</th>
+            <th scope="col">Acties</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Categorie 1</td>
+            <td>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim
+              illo adipisci dolores voluptatibus quam consequatur repellendus
+              voluptates numquam accusamus dolorem?
+            </td>
+            <td>
+              <a type="button" (click)="edit(0)">
+                <i class="fas fa-pen text-primary"></i>
+              </a>
+              <a class="ml-3" type="button" (click)="delete(0)">
+                <i class="fas fa-trash" style="color: red"></i>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Categorie 2</td>
+            <td>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim
+              illo adipisci dolores voluptatibus quam consequatur repellendus
+              voluptates numquam accusamus dolorem?
+            </td>
+            <td>
+              <a type="button" (click)="edit(0)">
+                <i class="fas fa-pen text-primary"></i>
+              </a>
+              <a class="ml-3" type="button" (click)="delete(0)">
+                <i class="fas fa-trash" style="color: red"></i>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Categorie 3</td>
+            <td>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim
+              illo adipisci dolores voluptatibus quam consequatur repellendus
+              voluptates numquam accusamus dolorem?
+            </td>
+            <td>
+              <a type="button" (click)="edit(0)">
+                <i class="fas fa-pen text-primary"></i>
+              </a>
+              <a class="ml-3" type="button" (click)="delete(0)">
+                <i class="fas fa-trash" style="color: red"></i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

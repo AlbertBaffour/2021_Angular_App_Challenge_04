@@ -1,0 +1,58 @@
+<div class="col-sm-10 col-md-8 col-lg-6 col-xl-4 m-auto py-4">
+  <h2 *ngIf="isAdd">Artikel toevoegen</h2>
+  <h2 *ngIf="isEdit">Artikel bewerken</h2>
+  <hr class="my-0">
+  <form (ngSubmit)="onSubmit()" #articleForm="ngForm">
+    <div class="form-group">
+      <label for="name">Naam product: </label>
+      <input type="text" id="name" name="name" class="form-control" [(ngModel)]="article.name" #name="ngModel" required>
+    </div>
+
+    <div class="form-group">
+      <label for="brand">Merk</label>
+      <input type="text" id="brand" name="brand" class="form-control" [(ngModel)]="article.brand" #name="ngModel">
+    </div>
+
+    <div class="form-group">
+      <label for="color">Kleur: </label>
+      <input type="text" id="color" name="color" class="form-control" [(ngModel)]="article.color" #name='ngModel'>
+    </div>
+
+    <div class="form-group">
+      <label for="price">Prijs: </label>
+      <input type="text" class="form-control" id="price" name="price" [(ngModel)]='article.price' #price="ngModel">
+    </div>
+
+    <div class="form-group">
+      <label for="description">Beschrijving: </label>
+      <input type="text" class="form-control" name="description" id="description" [(ngModel)]="article.description" #description="ngModel">
+    </div>
+
+    <div class="form-group">
+      <label for="quantityInStock">Aantal stock: </label>
+      <input type="text" name="quantityInStock" id="quantityInStock" class="form-control" [(ngModel)]="article.quantityInStock" #quantityInStock="ngModel">
+    </div>
+    <div class="form-group">
+      <label for="categoryId">Categorie: </label>
+      <select name="categoryId" id="categoryId" class="form-control" [(ngModel)]="article.categoryId">
+        <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <input name="isActive" id="isActive" type="checkbox" [(ngModel)]="article.isActive">
+      <label for="isActive"> Actief</label>
+    </div>
+
+
+    <div class="d-flex">
+      <button type="submit" class="btn btn-primary d-flex align-items-center" *ngIf="isAdd" [disabled]="!articleForm.form.valid || isSubmitted">Artikel toevoegen  <span class=" ml-2 material-icons-outlined">
+add_circle_outline
+</span></button>
+      <button type="submit" class="btn btn-primary" *ngIf="isEdit" [disabled]="!articleForm.form.valid || isSubmitted">Artikel opslaan <i class="fas fa-save"></i></button>
+      <a routerLink="/admin/articles" class="btn btn-outline-secondary ml-2">Annuleren</a>
+    </div>
+
+  </form>
+
+</div>

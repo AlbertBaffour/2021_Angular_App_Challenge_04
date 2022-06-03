@@ -1,0 +1,24 @@
+<div class="background">
+  <div class="row justify-content-start h-100">
+    <div class="d-none d-md-flex col-md-7 col-lg-7 home-image-container align-items-center justify-content-center">
+    </div>
+    <div class="col-12 col-md-5 col-lg-4 d-flex justify-content-center align-items-center px-4 px-sm-0 pr-md-5 pr-lg-0">
+      <div class="d-flex flex-column w-100">
+        <div class="container">
+          <img src="/assets/logo-DSport-L.svg" alt="" width="200px" class="img-fluid">
+          <h5 class="mb-3 mt-2">Voor al uw sportvoeding</h5>
+          <form (ngSubmit)="onSearchSubmit()" class="sb-form d-flex">
+            <input class="sb-input" type="text" id="searchText" name="searchText" placeholder="Waar ben je naar op zoek?" [(ngModel)]="searchText">
+          </form>
+        </div>
+        <div class="container-fluid p-0 mt-4 d-flex flex-column justify-content-center">
+          <p class="font-weight-bold mb-0 text-center ">Geselecteerd voor u</p>
+          <div class="d-flex justify-content-center pt-2 flex-wrap">
+            <app-recommendeditem *ngFor="let article of articles" [articleId]="article.id" [articleImg]="article.img"></app-recommendeditem>
+          </div>
+          <app-loading *ngIf="loading$ | async" [isHome]="true"></app-loading>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

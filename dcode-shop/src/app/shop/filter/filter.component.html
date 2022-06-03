@@ -1,0 +1,56 @@
+<div class="filter-container h-100 bg-white shadow p-4 d-none d-md-block">
+  <div class="header d-flex align-items-center justify-content-between">
+    <p class="mb-0">Filters</p>
+    <span class="material-icons-outlined icon">
+      tune
+    </span>
+  </div>
+
+  <div class="filters">
+
+
+
+
+    <form action="">
+      <div class="form-check d-flex align-items-center">
+        <input (change)="toonOutOfStock()" ngModel="stock" id="instock" name="instock" class="form-check-input mt-0" type="checkbox" value="">
+        <label class="form-check-label noSelect" for="instock">
+        Op voorraad
+        </label>
+      </div>
+
+      <p class="font-weight-bold mb-0 mt-4">
+        Prijs (€)
+      </p>
+      <!--   price  :) -->
+      <div class="align-items-center">
+        <div class="d-block">
+          <label class="" for="priceFrom">van</label>
+          <input class="form-control mt-0" [(ngModel)]="priceLow" type="number" name="priceFrom" id="priceFrom" min="0" placeholder="2.99...">
+        </div>
+        <div class="d-block"><label class="" for="priceFrom">Tot</label>
+          <input class="form-control mt-0" [(ngModel)]="priceHigh" type="number" name="priceTo" id="priceTo" min="0" placeholder="50.99...">
+        </div>
+      </div>
+
+
+
+
+
+
+      <p class="font-weight-bold mb-0 mt-2">
+        Merk
+      </p>
+      <div *ngFor="let brand of brands" class="form-check d-flex align-items-center">
+        <input (change)="brandSelect(brand)" id="{{brand}}" class="form-check-input mt-0" type="checkbox" value="">
+        <label class="form-check-label noSelect" for="{{brand}}">
+          {{brand}}
+        </label>
+      </div>
+
+
+
+      <button type="button"  (click)="filter()" class=" btn btn-primary w-100 mt-4">Filters toepassen</button>
+    </form>
+  </div>
+</div>

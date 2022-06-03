@@ -1,0 +1,30 @@
+<div class="shop-container d-flex">
+  <app-filter *ngIf="!searchText"  [totalArticles]="headers.totalRecords" [sortBy]="sort + '-' + order"
+   (getArticles)="getArticles($event.page, $event.sort, $event.order,$event.selectedBrands,$event.priceLow,$event.priceHigh,$event.inStock )" ></app-filter>
+  <div class="shop flex-grow-1">
+    <div *ngIf="articles.length != 0" class="shop-header p-0">
+      <app-shopheader *ngIf="articles.length != 0" [category]="selectedCategory.name" [sortBy]="sort + '-' + order" 
+                      [totalArticles]="headers.totalRecords" (getArticles)="getArticles($event.page, $event.sort, $event.order)" [searched]="searchText ? true : false"></app-shopheader>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row articles">
+
+        <div *ngFor="let article of articles" class="col-sm-6 col-lg-4 col-xl-3 p-0 article">
+          <app-article [article]="article"></app-article>
+        </div>
+
+        <app-pagination *ngIf="headers.totalPages > 1 && !(loading$ | async)" (getArticles)="getArticles($event.page, $event.sort, $event.order,$event.selectedBrands,$event.priceLow,$event.priceHigh,$event.inStock)" [headers]="headers"
+                        class="col-12 "></app-pagination>
+      </div>
+
+      <app-loading *ngIf="loading$ | async"></app-loading>
+
+      <div *ngIf="articles.length === 0 && !(loading$ | async)" class="text-center mt-4">
+        <div class="text-muted">Geen artikelen gevonden...</div>
+        <div class="text-muted m-0">Probeer andere zoektermen of filters toe te passen</div>
+      </div>
+    </div>
+  </div>
+</div>
+

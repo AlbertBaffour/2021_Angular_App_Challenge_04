@@ -1,0 +1,38 @@
+<div class="container mt-4">
+  <div class="d-flex">
+    <button class="btn btn-white mr-2" (click)="goBack()">
+      <i class="fas fa-arrow-left"></i>
+    </button>
+    <h2 class="mt-2">{{ getTitleText() }}</h2>
+  </div>
+  <hr class="mb-2 mt-0" />
+  <div class="card border-0 mt-4">
+    <div class="card-body pt-0">
+      <ng-container *ngIf="!(loading$ | async)">
+        <app-basketitem *ngFor="let item of basketItems" [basketItem]="item" [mode]="mode" (onQuantityChanged)="calculateTotalPrice()" (onDelete)="getItemsOfBasket(basket.id)"></app-basketitem>
+      </ng-container>
+
+      <app-loading *ngIf="loading$ | async"></app-loading>
+
+      <div *ngIf="basketItems.length === 0  && !(loading$ | async)">
+        <div class="text-muted alert alert-primary">Uw winkelmandje is nog leeg <br> Ga naar de <a href="/shop">winkel</a> om artikelen toe te voegen</div>
+      </div>
+
+      <div class="row" *ngIf="!(loading$ | async) && basketItems.length != 0">
+        <div class="col-md-12 d-flex align-items-end flex-column">
+          <div class="row text-right">
+            <div class="col-12">
+              <h3><b>Totaal</b></h3>
+            </div>
+            <div class="flex-sm-col col">
+              <h4 class="mb-1">€ {{ basket.totalPrice }}</h4>
+            </div>
+            <div *ngIf="mode === 'current' && basketItems.length > 0" class="col-12 mt-3">
+              <button (click)="orderBasket()" class="btn btn-primary">Verder naar bestellen</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

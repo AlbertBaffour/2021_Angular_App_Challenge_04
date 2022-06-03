@@ -1,0 +1,42 @@
+<div class="container mt-4" *ngIf="!(loading$ | async)">
+  <div class="d-flex">
+    <button class="btn btn-white mr-2" (click)="goBack()">
+      <i class="fas fa-arrow-left"></i>
+    </button>
+    <h2 class="mt-2">Bestelling: #{{order.id}}</h2>
+  </div>
+  <hr class="mb-2 mt-0"/>
+  <div *ngIf="order.orderProducts.length === 0  && !(loading$ | async)" class="text-center">
+    <div class="text-muted">Deze bestelling bevat geen artikelen</div>
+  </div>
+
+  <ng-container *ngIf="!(loading$ | async) && articles.length != 0" >
+    <h4 class="mb-2">Klant: {{order.customer!.firstName + ' ' + order.customer!.lastName}}</h4>
+    <h5 class="mb-2">Datum: {{order.orderDate | date: 'd/M/y'}}</h5>
+    <ul class="ml-4 mt-3">
+      <ng-container *ngFor="let article of articles">
+        <ng-container *ngFor="let op of order.orderProducts">
+          <li *ngIf="article.id == op.productId" class="mt-2">
+            <a routerLink="/shop/{{article.id}}">{{article.name}}</a>
+            <ul class="ml-3">
+              <li>
+                <span>Aantal: {{op.quantity}}x </span>
+              </li>
+              <li>
+                <span>Prijs per product: € {{op.currentPrice}} </span>
+              </li>
+            </ul>
+          </li>
+        </ng-container>
+      </ng-container>
+    </ul>
+    <hr>
+    <h4>Totaal: € {{totalPrice | number}}</h4>
+
+  </ng-container>
+
+
+</div>
+
+
+<app-loading *ngIf="loading$ | async"></app-loading>

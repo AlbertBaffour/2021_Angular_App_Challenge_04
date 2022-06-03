@@ -1,0 +1,41 @@
+<div class="background" *ngIf="!(loading$ | async)">
+  <div class="row">
+    <div class="col-12">
+
+    </div>
+  </div>
+  <div class="row justify-content-between h-100">
+    <div class="col-sm-12 col-md-5 col-lg-7 product-image-container d-flex flex-column flex-md-row justify-content-center">
+      <button (click)="return()" class="btn btn-white return align-self-start ml-3 mt-3 ml-lg-0 mr-md-4 mt-md-5 mb-3 color-text">
+          <i class="fas fa-chevron-left"></i>
+      </button>
+      <img class="img-fluid product-image align-self-center"
+           src="{{article!=null?(baseImgUrl+article.img):''}}"
+           alt="">
+    </div>
+
+    <div class="col-sm-12 col-md-7 col-lg-5 d-flex justify-content-center align-items-center">
+      <div class="row product-info">
+        <div class="p-4 col-lg-9 col-md-10">
+          <h3 class="font-weight-bold product-title">{{article.name}}</h3>
+          <h4 class=" font-weight-light">{{article.brand}}</h4>
+          <p class="font-weight-bold mt-2">€{{article.price}}</p>
+
+          <div class="d-flex align-items-center mt-2">
+            <button class="btn btn-block btn-primary mr-2" (click)="addToBasket()"><i class="fas fa-shopping-bag"></i> Bestellen</button>
+            <button (click)="favorite()" [class.out-of-stock-fav]="article.quantityInStock == 0" class="btn btn-light favorite {{isFavorite?'favorite-active':''}}"><i class="{{isFavorite?'fas fa-heart':'far fa-heart'}}"></i>
+            </button>
+
+          </div>
+
+          <h3 class="font-weight-bold mt-5">Beschrijving</h3>
+          <p>
+            {{article.description}}
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<app-loading *ngIf="loading$ | async"></app-loading>

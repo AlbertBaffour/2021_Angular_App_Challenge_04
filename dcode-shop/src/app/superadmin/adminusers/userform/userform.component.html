@@ -1,0 +1,74 @@
+<div id="#userform" class="col-sm-10 col-md-8 col-lg-6 col-xl-4 m-auto py-4">
+  <h2 *ngIf="isAdd">Gebruiker toevoegen</h2>
+  <h2 *ngIf="isEdit">Gebruiker bewerken</h2>
+  <hr class="my-0">
+  <div class="alert alert-red" role="alert" *ngIf="isSubmitted && errorMessage">
+    {{errorMessage}}
+  </div>
+  <form (ngSubmit)="onSubmit()" #tdlistForm="ngForm">
+    <div class="form-group">
+      <label for="fname">Voornaam:</label>
+      <input type="text" class="form-control" id="fname" name="fname" placeholder="John"
+             [(ngModel)]="user.firstName" #fname="ngModel" required>
+      <div [hidden]="fname.valid || fname.pristine" class="alert alert-danger">Geef een voornaam in</div>
+    </div>
+
+    <div class="form-group">
+      <label for="lname">Achternaam:</label>
+      <input type="text" class="form-control" id="lname" name="lname" placeholder="doe"
+             [(ngModel)]="user.lastName" #lname="ngModel" required>
+      <div [hidden]="lname.valid || lname.pristine" class="alert alert-danger">Geef een achternaam in</div>
+
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="text" class="form-control" id="email" name="email" placeholder="john.doe@dsport.com"
+             [(ngModel)]="user.email" #email="ngModel" required>
+      <div [hidden]="email.valid || email.pristine" class="alert alert-danger">Geef een geldig emailadres</div>
+    </div>
+    <div class="form-group">
+      <label for="streetnr">Straat en huisnummer:</label>
+      <input type="text" class="form-control" id="streetnr" name="streetnr" placeholder="Straatweg 40"
+             [(ngModel)]="customer.streetAndNumber" #streetnr="ngModel" required>
+      <div [hidden]="streetnr.valid || streetnr.pristine" class="alert alert-danger">Geef een geldig adres</div>
+    </div>
+    <div class="form-group">
+      <label for="pcode">Postcode:</label>
+      <input type="text" class="form-control" id="pcode" name="pcode" placeholder="1234"
+             [(ngModel)]="customer.postcode" #pcode="ngModel" required>
+      <div [hidden]="pcode.valid || pcode.pristine" class="alert alert-danger">Geef een geldige postcode</div>
+    </div>
+    <div class="form-group">
+      <label for="city">Stad:</label>
+      <input type="text" class="form-control" id="city" name="city" placeholder="Brussel"
+             [(ngModel)]="customer.city" #city="ngModel" required>
+      <div [hidden]="city.valid || city.pristine" class="alert alert-danger">Geef een geldige stad</div>
+    </div>
+    <div class="form-group">
+      <label for="telnr">Telefoonnummer:</label>
+      <input type="tel" class="form-control" id="telnr" name="telnr" placeholder="0123 45 67 89"
+             [(ngModel)]="customer.phone" #telnr="ngModel" required>
+      <div [hidden]="telnr.valid || telnr.pristine" class="alert alert-danger">Geef een geldig telefoonnummer</div>
+
+      <div class="form-group">
+        <div><label for="active">Actief: <input type="checkbox" ng-checked="user.isActive" [(ngModel)]="user.isActive"
+                                                id="active" name="active" [ngModelOptions]="{standalone: true}"></label>
+        </div>
+        <div><label for="admin" class="mt-0 mb-2">Admin: <input type="checkbox" ng-checked="user.isAdmin"
+                                                                [(ngModel)]="user.isAdmin" id="admin" name="admin"
+                                                                [ngModelOptions]="{standalone: true}" [disabled]="user.isSuperAdmin"></label></div>
+      </div>
+      <div class="d-flex">
+        <button type="submit" class="btn btn-primary d-flex align-items-center" *ngIf="isAdd"
+                [disabled]="!tdlistForm.form.valid || isSubmitted">Toevoegen <span class=" ml-2 material-icons-outlined">
+add_circle_outline
+</span>
+        </button>
+        <button type="submit" class="btn btn-primary" *ngIf="isEdit"
+                [disabled]="!tdlistForm.form.valid || isSubmitted">Opslaan <i class="ml-2 fas fa-save"></i>
+        </button>
+        <a routerLink="/superadmin/users" class="btn btn-outline-secondary ml-2">Annuleren</a>
+      </div>
+    </div>
+  </form>
+</div>

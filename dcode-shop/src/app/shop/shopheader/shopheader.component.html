@@ -1,0 +1,23 @@
+<div class="shop-header p-3 d-flex flex-column flex-md-row">
+  <div class="d-flex align-items-center">
+    <div
+      class="article-amount mb-1 d-flex align-items-center justify-content-center mr-2">{{totalArticles}}</div>
+    <p class="category mb-0">
+      {{category}}
+    </p>
+  </div>
+
+
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet" />
+  <div *ngIf="!searched" class="d-flex align-items-center ml-0 ml-md-3 ml-lg-5">
+    Sorteren:
+    <select [(ngModel)]="sortBy" (change)="sort()" class="form-control sort-dd pr-3 ml-2" name="" id="">
+      <option value="name-asc">Artikel &#xf15d;</option>
+      <option value="name-desc">Artikel &#xf15e;</option>
+      <option value="brand-asc">Merk &#xf15d;</option>
+      <option value="brand-desc">Merk &#xf15e;</option>
+      <option value="price-asc">Prijs &#xf162;</option>
+      <option value="price-desc">Prijs &#xf163;</option>
+    </select>
+  </div>
+</div>

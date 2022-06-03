@@ -1,0 +1,53 @@
+<div class="container-fluid">
+  <div class="row my-4">
+    <div class="col-lg-10 col-12 offset-lg-1">
+      <div class="d-flex justify-content-between flex-column flex-md-row text-center">
+        <h2 class="mb-0">Artikelen beheren</h2>
+        <div class="mx-auto mx-md-0">
+          <button type="button" (click)="add()" class="btn btn-green addBtn d-flex align-items-center" >Nieuw artikel <span class=" ml-2 material-icons-outlined">
+add_circle_outline
+</span></button>
+        </div>
+      </div>
+      <hr class="mb-0 mt-2">
+      <app-loading *ngIf="loading$ | async"></app-loading>
+      <div *ngIf="articles.length == 0 && !(loading$ | async)" class="text-center mt-4">
+        <div class="text-muted alert alert-primary">Geen artikelen gevonden</div>
+      </div>
+    </div>
+    <div class="col-lg-10 col-12 offset-lg-1 mt-2 table-responsive">
+      <table datatable [dtOptions]="dtOptions" class="table crud-table bg-success shadow-sm " *ngIf="articles && articles.length > 0">
+        <thead class="bg-secondary">
+        <tr>
+          <th scope="col">Foto</th>
+          <th scope="col">Naam</th>
+          <th scope="col">Merk</th>
+          <th scope="col">Stock</th>
+          <th scope="col">Prijs</th>
+          <th class="text-center" scope="col">Actie</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr *ngFor="let article of articles" >
+          <td><div class="media flex-column flex-sm-row"> <img class=" img-fluid" src="{{baseImgUrl+article.img}}" width="62" height="62"> </div></td>
+          <td>{{article.name}}</td>
+          <td>{{article.brand}}</td>
+          <td class="font-weight-bold" [ngClass]="{'qty-good': article.quantityInStock > 5, 'qty-warning': article.quantityInStock > 0 && article.quantityInStock <= 5, 'qty-out': article.quantityInStock == 0}">{{article.quantityInStock}}</td>
+          <td>€{{article.price}}</td>
+          <td class="text-center">
+            <div class="btn-group">
+              <a href="/shop/{{article.id}}" class="btn btn-primary"><i class="far fa-eye"></i></a>
+              <button type="button" class="btn btn-green" (click)="edit(article.id)"><i class="far fa-edit"></i></button>
+              <button type="button" class="btn btn-red" (click)="delete(article.id)"><i class="far fa-trash-alt"></i></button>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+

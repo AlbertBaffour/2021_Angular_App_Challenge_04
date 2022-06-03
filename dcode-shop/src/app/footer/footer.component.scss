@@ -1,0 +1,12 @@
+@import '/src/scss/variables';
+
+.footer-container{
+  width: 100%;
+  background-color: $footer;
+  *{
+    color: $success;
+  }
+  .footer-dot{
+    font-size: 0.5rem;
+  }
+}

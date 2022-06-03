@@ -1,0 +1,49 @@
+@import '/src/scss/variables';
+
+.recommended-item {
+  position: relative;
+
+  border-radius: 25px;
+  width: 120px;
+  height: 120px;
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+  overflow: hidden;
+
+  img {
+    display: block;
+    margin: auto;
+
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  transition: all 0.2s;
+  &:hover {
+    border: 2px solid $secondary;
+
+    .read-more-btn, .price {
+      display: block;
+    }
+  }
+}
+
+.read-more-btn, .price {
+  z-index: 1;
+  position: absolute;
+  display: none;
+}
+
+.read-more-btn {
+  width: 90%;
+  bottom: 10px;
+  left: 6px;
+  border-radius: 15px;
+  font-size: 1rem;
+}
+
+.price {
+  font-size: 1.4rem;
+  bottom: 35px;
+  left: 20px;
+}

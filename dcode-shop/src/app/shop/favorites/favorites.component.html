@@ -1,0 +1,20 @@
+<div class="container mt-4">
+  <div class="d-flex">
+    <button class="btn btn-white mr-2" (click)="goBack()">
+      <i class="fas fa-arrow-left"></i>
+    </button>
+    <h2 class="mt-2">Mijn favorieten</h2>
+  </div>
+  <hr class="mb-2 mt-0" />
+  <div class="container-fluid pb-3">
+    <div class="row favorites" *ngIf="favs && favs.length > 0">
+      <div class="col-sm-6 col-lg-4 col-xl-3 p-0" *ngFor="let fav of favs">
+        <app-favorite [currentFav]="fav" (GetUserFavs)="GetUserFavs()"></app-favorite>
+      </div>
+    </div>
+    <app-loading *ngIf="loading$ | async"></app-loading>
+    <div class="favorites text-muted alert alert-primary" *ngIf="favs.length == 0 && !(loading$ | async)">
+      U heeft nog geen favorieten toegevoegd
+    </div>
+  </div>
+</div>

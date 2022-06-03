@@ -1,0 +1,18 @@
+@import "/src/scss/variables";
+
+.table .thead-dark th{
+  background-color: $secondary;
+}
+
+
+.qty-out{
+  color: $danger-red !important;
+}
+
+.qty-warning{
+  color: $warning-orange !important;
+}
+
+.qty-good{
+  color: $success-green !important;
+}

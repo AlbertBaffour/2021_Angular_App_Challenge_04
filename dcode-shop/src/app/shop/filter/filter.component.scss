@@ -1,0 +1,17 @@
+@import "/src/scss/variables";
+
+.filter-container{
+  width: 300px;
+
+  .header{
+    *{
+      color: $primary;
+    }
+    .icon{
+
+    }
+    p{
+      font-size: 2.2rem;
+    }
+  }
+}

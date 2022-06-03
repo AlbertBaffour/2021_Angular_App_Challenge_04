@@ -1,0 +1,15 @@
+@import "/src/scss/variables";
+
+.shop-container {
+  .shop-header{
+    width: 100%;
+  }
+
+  height: 100%;
+
+  .articles {
+    app-article {
+      height: 100%;
+    }
+  }
+}

@@ -1,0 +1,137 @@
+<nav class="navbar navbar-expand navbar-dark bg-primary shadow-sm">
+  <a class="navbar-brand py-0" routerLink="/" (click)="closeNavigation()">
+    <img src="/assets/logo-DSport-alt.png" width="100px" alt="DSport">
+  </a>
+
+  <div class="navbar-nav ml-auto">
+    <form (ngSubmit)="onSearchSubmit()" class="sb-form align-items-center d-none d-md-flex">
+      <div class="nav-sb">
+        <input class="sb-input" type="text" id="searchText" name="searchText" placeholder="..."
+               [(ngModel)]="searchText"/>
+      </div>
+    </form>
+
+    <a class="nav-item nav-link d-md-none d-flex align-items-center" routerLink="/search" (click)="closeNavigation()">
+      <span class="material-icons-outlined">
+        search
+      </span>
+    </a>
+    <a class="nav-item nav-link d-flex align-items-center ml-md-2" routerLink="/basket"
+       (click)="closeNavigation()"><span
+      class="cart-count mr-1 font-weight-bold d-flex align-items-center justify-content-center"
+      *ngIf="authService.isLoggedIn()">
+      {{ basketSize }}</span>
+      <span class="material-icons-outlined">
+        shopping_cart
+      </span>
+    </a>
+    <a class="nav-item nav-link d-none d-md-flex align-items-center" routerLink="/favorites"
+       (click)="closeNavigation()">
+      <span class="material-icons-outlined">
+        favorite_border
+      </span>
+    </a>
+    <!--    Account dropdown -->
+    <div *ngIf="authService.isLoggedIn()" class="dropdown d-flex align-items-center account-dropdown">
+      <a class="nav-item nav-link d-flex align-items-center" id="dropdownMenuButton" data-toggle="dropdown"
+         aria-haspopup="true" aria-expanded="false">
+        <span class="material-icons-outlined">
+          account_circle
+        </span>
+      </a>
+      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" routerLink="/user" (click)="closeNavigation()">Mijn profiel</a>
+        <a class="dropdown-item" routerLink="/orders" (click)="closeNavigation()">Mijn bestellingen</a>
+        <a class="dropdown-item d-block d-md-none" routerLink="/favorites" (click)="closeNavigation()">Mijn favorieten</a>
+
+        <div *ngIf="authService.getRole() == 'admin' || authService.getRole() == 'superadmin'">
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" routerLink="/admin/articles" (click)="closeNavigation()">Artikelen</a>
+          <a class="dropdown-item" routerLink="/admin/orders" (click)="closeNavigation()">Bestellingen</a>
+          <a *ngIf="authService.getRole() == 'superadmin'" class="dropdown-item"
+             routerLink="/superadmin/users" (click)="closeNavigation()">Users</a>
+        </div>
+        <div class="dropdown-divider"></div>
+        <a routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="dropdown-item"
+           routerLink="/logout" (click)="closeNavigation()">Logout</a>
+      </div>
+    </div>
+
+    <ul class="navbar-nav ml-auto d-none d-md-flex">
+      <li *ngIf="!authService.isLoggedIn()" class="nav-item" routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }">
+        <a class="nav-link" routerLink="/login" (click)="closeNavigation()">Login</a>
+      </li>
+      <li *ngIf="!authService.isLoggedIn()" class="nav-item" routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }">
+        <a class="nav-link" routerLink="/register" (click)="closeNavigation()">Registreer</a>
+      </li>
+      <li *ngIf="authService.isLoggedIn()" class="nav-item" routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }">
+        <a class="nav-link" routerLink="/logout" (click)="closeNavigation()">Logout</a>
+      </li>
+    </ul>
+
+    <!--    Login mobile -->
+    <a *ngIf="!authService.isLoggedIn()" routerLink="/login" (click)="closeNavigation()"
+       class="nav-item nav-link d-flex align-items-center pl-0 d-md-none" id="dropdownLogin" data-toggle="dropdown"
+       aria-haspopup="true" aria-expanded="false">
+      <span class="material-icons-outlined">
+        account_circle
+      </span>
+    </a>
+  </div>
+</nav>
+
+<div class="bg-danger nav-small d-none d-md-flex">
+  <div class="dropdown d-flex vw-100">
+    <a (click)="toggleNavigation()"
+       class="dropbtn-all text-white nav-toggler bg-secondary text-decoration-none px-4 d-flex justify-content-between align-items-center">
+      Alle artikelen
+      <i class="fas fa-bars ml-2"></i>
+    </a>
+
+    <!--    All -->
+    <div *ngIf="navToggled" class="dropdown-content-all px-3 py-3">
+      <div class="container-fluid">
+        <div class="row bg-success rounded p-4">
+          <div class="col-3 d-flex flex-column">
+            <button (click)="showAll()" class="btn btn-primary mb-2">
+              Toon alle artikelen
+            </button>
+            <div (click)="selectCategoryId(category.id)" *ngFor="let category of categories"
+                 class="rounded category-nav p-2 noSelect d-flex justify-content-between align-items-center">
+              {{category.name}}
+              <i class="fas fa-chevron-right"></i>
+            </div>
+          </div>
+
+          <div class="col-9">
+            <div *ngFor="let category of categories"
+                 [ngClass]="{'d-flex flex-column category-articles': selectedCategoryId == category.id, 'd-none category-articles': selectedCategoryId != category.id }"
+                 class="d-none category-articles" id="{{category.id + category.name}}">
+              <div *ngIf="articles.length != 0 && !(loading$ | async)" class="d-flex">
+                <div *ngFor="let article of articles" class="suggestion">
+                  <app-article [article]="article" [isSuggestion]="true" (click)="closeNavigation()" routerLink="/shop/{{article.id}}"></app-article>
+                </div>
+              </div>
+
+                <button *ngIf="articles.length != 0 && !(loading$ | async)" (click)="navigateCategory(category.id)" class="btn btn-outline-primary mt-2">
+                  Toon alle {{category.name}}
+                </button>
+            </div>
+            <app-loading *ngIf="loading$ | async"></app-loading>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--          Small nav -->
+    <div class="d-flex align-items-center category-container">
+      <a *ngFor="let category of categories" (click)="navigateCategory(category.id)"
+         class="text-white text-decoration-none dropbtn dropbtn-small">
+        {{category.name}}
+      </a>
+    </div>
+  </div>
+</div>
